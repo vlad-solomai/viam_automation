@@ -1,0 +1,5 @@
+proxy.prod.com    1.1.1.1
+jenkins.prod.com    2.2.2.2
+mongodb.prod.com    3.3.3.3
+mysql.prod.com    4.4.4.4
+zabbix.prod.com    5.5.5.5

@@ -1,0 +1,5 @@
+proxy.qa.com    1.1.1.1
+jenkins.qa.com    2.2.2.2
+mongodb.qa.com    3.3.3.3
+mysql.qa.com    4.4.4.4
+zabbix.qa.com    5.5.5.5
