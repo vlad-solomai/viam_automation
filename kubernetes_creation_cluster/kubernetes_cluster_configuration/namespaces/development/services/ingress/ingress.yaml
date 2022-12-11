@@ -1,0 +1,27 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-game
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+#    nginx.org/server-snippets: |
+#      location /test {
+#          rewrite ^/test(/.*)$ $1 last;
+#      }
+spec:
+  rules:
+  - host: ec2.eu-west-2.compute.amazonaws.com
+    http:
+      paths:
+      - path: /gameConfig
+        backend:
+          serviceName: gameconfig-test-service
+          servicePort: 8080
+  - host: ec2.eu-west-2.compute.amazonaws.com
+    http:
+      paths:
+      - path: /gameConfig
+        backend:
+          serviceName: gameconfig-stage-service
+          servicePort: 8081

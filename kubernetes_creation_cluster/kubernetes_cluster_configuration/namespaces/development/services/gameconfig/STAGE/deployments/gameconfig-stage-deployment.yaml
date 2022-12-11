@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gameconfig-stage
+  labels:
+    environment: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gameconfig-stage
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: gameconfig-stage
+    spec:
+      nodeSelector:
+        app.kubernetes.io/component: game-service
+        app.kubernetes.io/name: gameconfig
+      containers:
+      - name: gameconfig-stage
+        image: harbor.com/microservices/game-config-service:1.0-SNAPSHOT
+        env:
+        - name: JAVA_OPTS
+          value: "-Xms1024m -Xmx1024m"
+        ports:
+        - containerPort: 8098
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "1024Mi"
+
+        volumeMounts:
+        - name: configmap-stage-gameconfig
+          mountPath: /conf/
+        - name: logs-gameconfig
+          mountPath: /logs/
+
+      volumes:
+      - name: configmap-stage-gameconfig
+        configMap:
+          name: configmap-stage-gameconfig
+      - name: logs-gameconfig
+        persistentVolumeClaim:
+          claimName: gameconfig-stage-pvc
+      imagePullSecrets:
+      - name: regcred

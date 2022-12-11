@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gameconfig-test-pvc
+spec:
+  storageClassName: gameconfig-test-pv
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1024Mi
