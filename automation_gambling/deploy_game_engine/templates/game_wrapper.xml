@@ -1,0 +1,11 @@
+<service>
+  <id></id>
+  <name></name>
+  <description></description>
+  <executable></executable>
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>5</keepFiles>
+  </log>
+  <onfailure action="restart" />
+</service>
