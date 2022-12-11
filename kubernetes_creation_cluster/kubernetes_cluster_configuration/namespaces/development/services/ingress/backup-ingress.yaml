@@ -1,0 +1,16 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-stage
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: ec2.eu-west-2.compute.amazonaws.com
+    http:
+      paths:
+      - path: /gameConfig
+        backend:
+          serviceName: gameconfig-stage-service
+          servicePort: 8081

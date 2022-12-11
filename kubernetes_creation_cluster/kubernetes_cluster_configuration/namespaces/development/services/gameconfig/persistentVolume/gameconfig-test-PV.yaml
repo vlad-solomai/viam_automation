@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: gameconfig-test-pv
+  labels:
+    type: local
+spec:
+  storageClassName: gameconfig-test-pv
+  capacity:
+    storage: 1024Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/opt/sys/gameconfig/"
